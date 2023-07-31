@@ -28,6 +28,7 @@ tomato_model = tf.keras.models.load_model("../Model/Tomato.h5")
 corn_model = tf.keras.models.load_model("../Model/corn.h5")
 sugarcane_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 
 
 # Define a route for the '/ping' endpoint, accessible via HTTP GET request
@@ -60,18 +61,27 @@ async def predict(
         predictions = tomato_model.predict(img_batch)
         predicted_class = CLASS_NAMES_Tomato[np.argmax(predictions[0])] # Find the index of the class with the highest probability and get its corresponding class name
         solution = disease_solution_Tomato.get(predicted_class, "No solution found.") # Get the solution for the predicted disease from the dictionary
+        name = disease_name_Tomato.get(predicted_class, "No name found.")
     elif plant == "Corn":
         predictions = corn_model.predict(img_batch)
         predicted_class = CLASS_NAMES_Corn[np.argmax(predictions[0])]
         solution = disease_solution_Corn.get(predicted_class, "No solution found.")
+        name = disease_name_Corn.get(predicted_class, "No name found.")
     elif plant == "Sugarcane":
         predictions = sugarcane_model.predict(img_batch)
         predicted_class = CLASS_NAMES_Sugarcane[np.argmax(predictions[0])]
         solution = disease_solution_Sugarcane.get(predicted_class, "No solution found.")
+        name = disease_name_Sugarcane.get(predicted_class, "No name found.")
     elif plant == "Tea":
         predictions = tea_model.predict(img_batch)
         predicted_class = CLASS_NAMES_Tea[np.argmax(predictions[0])]
         solution = disease_solution_Tea.get(predicted_class, "No solution found.")
+        name = disease_name_Tea.get(predicted_class, "No name found.")
+    elif plant == "Grape":
+        predictions = grape_model.predict(img_batch)
+        predicted_class = CLASS_NAMES_Grape[np.argmax(predictions[0])]
+        solution = disease_solution_Grape.get(predicted_class, "No solution found.")
+        name = disease_name_Grape.get(predicted_class, "No name found.")
     else:
         return {
             'error': 'Invalid plant name.'
@@ -80,11 +90,12 @@ async def predict(
     
     
     # Get the highest probability value as the confidence level
-    confidence = np.max(predictions[0])
+    confidence = np.max(predictions[0]*100)
+    confidence = "{:.2f}".format(confidence)
 
     # Return the predicted class and confidence level as a JSON response
     return {
-        'class': predicted_class,
+        'disease': name,
         'confidence': float(confidence),
         'solution': solution
     }
@@ -102,13 +113,25 @@ disease_solution_Tomato = {
     "Tomato___Bacterial_spot": "Solution for Bacterial Spot...",
     "Tomato___Early_blight": "Solution for Early Blight...",
     "Tomato___Late_blight": "Solution for Late Blight...",
-    "Tomato___Leaf_Mold": "Solution for Leaf Mold...",
+    "Tomato___Leaf_Mold": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
     "Tomato___Septoria_leaf_spot": "Solution for Septoria Leaf Spot...",
     "Tomato___Spider_mites Two-spotted_spider_mite": "Solution for Spider Mites...",
     "Tomato___Target_Spot": "Solution for Target Spot...",
     "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "Solution for Yellow Leaf Curl Virus...",
     "Tomato___Tomato_mosaic_virus": "Solution for Tomato Mosaic Virus...",
     "Tomato___healthy": "No disease detected. Your tomato plant is healthy!",
+}
+disease_name_Tomato = {
+    "Tomato___Bacterial_spot": "Bacterial spot",
+    "Tomato___Early_blight": "Early blight",
+    "Tomato___Late_blight": "Late blight",
+    "Tomato___Leaf_Mold": "Leaf Mold",
+    "Tomato___Septoria_leaf_spot": "Septoria leaf spot",
+    "Tomato___Spider_mites Two-spotted_spider_mite": "Spider mites",
+    "Tomato___Target_Spot": "Target Spot",
+    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "Yellow Leaf Curl Virus",
+    "Tomato___Tomato_mosaic_virus": "Mosaic Virus",
+    "Tomato___healthy": "healthy",
 }
 
 
@@ -119,6 +142,12 @@ disease_solution_Corn = {
     "Corn__northern_leaf_blight": "Solution for northern_leaf_blight...",
     "Corn__healthy": "No disease detected. Your plant is healthy!",
 }
+disease_name_Corn = {
+    "Corn__common_rust": "common rust",
+    "Corn__gray_leaf_spot": "gray_leaf_spot",
+    "Corn__northern_leaf_blight": "northern_leaf_blight",
+    "Corn__healthy": "healthy",
+}
 
 
 CLASS_NAMES_Sugarcane= ["Sugarcane__bacterial_blight","Sugarcane__healthy","Sugarcane__red_rot","Sugarcane__rust"]
@@ -128,6 +157,12 @@ disease_solution_Sugarcane = {
     "Sugarcane__rust": "Solution for Sugarcane__rust...",
     "Sugarcane__healthy": "No disease detected. Your plant is healthy!",
 }
+disease_name_Sugarcane = {
+    "Sugarcane__bacterial_blight": "bacterial blight",
+    "Sugarcane__red_rot": "Sugarcane red rot",
+    "Sugarcane__rust": "Sugarcane rust",
+    "Sugarcane__healthy": "healthy",
+}
 
 
 CLASS_NAMES_Tea= ["Tea__algal_leaf","Tea__anthracnose","Tea__bird_eye_spot","Tea__brown_blight","Tea__healthy","Tea__red_leaf_spot"]
@@ -135,7 +170,30 @@ disease_solution_Tea = {
     "Tea__algal_leaf": "Solution for Tea__algal_leaf...",
     "Tea__anthracnose": "Solution for Tea__anthracnose...",
     "Tea__bird_eye_spot": "Tea__bird_eye_spott...",
-    "Sugarcane__Tea": "No disease detected. Your plant is healthy!",
+    "Tea__healthy": "No disease detected. Your plant is healthy!",
     "Tea__brown_blight": "Tea__brown_blight...",
     "Tea__red_leaf_spot": "Tea__red_leaf_spot...",
+}
+disease_name_Tea = {
+    "Tea__algal_leaf": "algal leaf",
+    "Tea__anthracnose": "anthracnose",
+    "Tea__bird_eye_spot": "bird eye spott",
+    "Tea__healthy": "healthy",
+    "Tea__brown_blight": "brown_blight",
+    "Tea__red_leaf_spot": "red leaf spot",
+}
+
+
+CLASS_NAMES_Grape =['Grape__black_measles','Grape__black_rot','Grape__healthy','Grape__leaf_blight_(isariopsis_leaf_spot)']
+disease_solution_Grape={
+    "Grape__black_measles": "Solution for bacterial_blight...",
+    "Grape__black_rot": "Solution for Sugarcane__red_rot...",
+    "Grape__healthy": "Solution for Sugarcane__rust...",
+    "Grape__leaf_blight_(isariopsis_leaf_spot)": "No disease detected. Your plant is healthy!",
+}
+disease_name_Grape={
+    "Grape__black_measles": "black measles",
+    "Grape__black_rot": "black rot",
+    "Grape__healthy": "healthy",
+    "Grape__leaf_blight_(isariopsis_leaf_spot)": "leaf_blight",
 }
