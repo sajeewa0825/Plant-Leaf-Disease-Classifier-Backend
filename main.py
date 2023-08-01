@@ -29,6 +29,7 @@ corn_model = tf.keras.models.load_model("../Model/corn.h5")
 sugarcane_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+potato_model= tf.keras.models.load_model("../Model/Potato.h5")
 
 
 # Define a route for the '/ping' endpoint, accessible via HTTP GET request
@@ -82,6 +83,11 @@ async def predict(
         predicted_class = CLASS_NAMES_Grape[np.argmax(predictions[0])]
         solution = disease_solution_Grape.get(predicted_class, "No solution found.")
         name = disease_name_Grape.get(predicted_class, "No name found.")
+    elif plant == "Potato":
+        predictions = potato_model.predict(img_batch)
+        predicted_class = CLASS_NAMES_Potato[np.argmax(predictions[0])]
+        solution = disease_solution_Potato.get(predicted_class, "No solution found.")
+        name = disease_name_Potato.get(predicted_class, "No name found.")
     else:
         return {
             'error': 'Invalid plant name.'
@@ -196,4 +202,17 @@ disease_name_Grape={
     "Grape__black_rot": "black rot",
     "Grape__healthy": "healthy",
     "Grape__leaf_blight_(isariopsis_leaf_spot)": "leaf_blight",
+}
+
+
+CLASS_NAMES_Potato =['Potato__early_blight', 'Potato__healthy', 'Potato__late_blight']
+disease_solution_Potato={
+    "Potato__early_blight": "Solution for bacterial_blight...",
+    "Potato__healthy": "Solution for Sugarcane__red_rot...",
+    "Potato__late_blight": "No disease detected. Your plant is healthy!",
+}
+disease_name_Potato={
+    "Potato__early_blight": "early blight",
+    "Potato__healthy": "healthy",
+    "Potato__late_blight": "late blight",
 }
