@@ -106,6 +106,16 @@ async def predict(
         'solution': solution
     }
 
+@app.post("/feedback")
+async def feedback(
+        rating :str = Form(...),
+        feedback : str = Form(...)
+):
+    if rating != None and feedback != None:
+        return {
+            'message': 'Thank you for your feedback!'
+        }
+
 # Run the FastAPI application with Uvicorn server on localhost and port 8000
 if __name__ == "__main__":
     uvicorn.run(app, host='localhost', port=8000)
@@ -116,15 +126,15 @@ CLASS_NAMES_Tomato = ["Tomato___Bacterial_spot", "Tomato___Early_blight", "Tomat
                "Tomato___Septoria_leaf_spot", "Tomato___Spider_mites Two-spotted_spider_mite", "Tomato___Target_Spot",
                "Tomato___Tomato_Yellow_Leaf_Curl_Virus", "Tomato___Tomato_mosaic_virus", "Tomato___healthy"]
 disease_solution_Tomato = {
-    "Tomato___Bacterial_spot": "Solution for Bacterial Spot...",
-    "Tomato___Early_blight": "Solution for Early Blight...",
-    "Tomato___Late_blight": "Solution for Late Blight...",
-    "Tomato___Leaf_Mold": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a ",
-    "Tomato___Septoria_leaf_spot": "Solution for Septoria Leaf Spot...",
-    "Tomato___Spider_mites Two-spotted_spider_mite": "Solution for Spider Mites...",
-    "Tomato___Target_Spot": "Solution for Target Spot...",
-    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "Solution for Yellow Leaf Curl Virus...",
-    "Tomato___Tomato_mosaic_virus": "Solution for Tomato Mosaic Virus...",
+    "Tomato___Bacterial_spot": "Follow crop rotation, sanitization, water management, fungicides, resistant varieties, biocontrol, and proper soil nutrition. Copper fungicides prevent bacterial spots, while resistant varieties and beneficial bacteria aid in biocontrol. Proper soil nutrition supports plant growth and resistance.",
+    "Tomato___Early_blight": "Implementing crop rotation, adequate spacing, watering at the base, and pruning techniques can help manage early blight. Wet leaves should be avoided, as they can encourage blight. Natural copper fungicides, chlorothalonil, or mancozeb can be used as foliar sprays or granules for control.",
+    "Tomato___Late_blight": "Use resistant tomato varieties like Brandywine, Iron Lady, Mountain Magic, and Mountain Merit, rotate crops, prune, stake, use fungicides, and harvest ripe tomatoes promptly. Clean up debris and sanitize the environment by discarding or burning infected plants.",
+    "Tomato___Leaf_Mold": "Proper air circulation is essential for preventing tomato leaf mold. Proper soil watering, fungicide use, and crop rotation are crucial. Infected leaves should be removed promptly and plants should be rotated to prevent fungus spread.",
+    "Tomato___Septoria_leaf_spot": "Follow crop rotation, proper drainage, pruning lower leaves, using fungicides, choosing disease-resistant varieties, providing good air circulation, and practicing sanitation. Rotate crops, prune branches, and ensure proper air circulation to prevent fungal growth and spread.",
+    "Tomato___Spider_mites Two-spotted_spider_mite": "Water spraying, neem oil, insecticidal soaps, and predatory mites can eliminate spider mites from tomato plants. Neem oil disrupts mite life cycles, while insecticidal soaps kill them weekly. Predatory mites feed on spider mites, providing biological control.",
+    "Tomato___Target_Spot": "Identify and remove infected plants, avoid planting tomatoes in the same spot for three years, use fungicides, manage water effectively, maintain soil fertility, avoid excessive nitrogen use, plant resistant varieties, practice good hygiene, and avoid soil spreading.",
+    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "Use resistant tomato varieties, use reflective mulch, control whiteflies with insecticides or natural predators, and use physical barriers like netting or lacewings. Physical barriers like netting can also help prevent whiteflies from accessing plants.",
+    "Tomato___Tomato_mosaic_virus": "Maintain good garden sanitation by cleaning tools, gloves, and supplies with disinfectant. Choose resistant tomato varieties, control pests with insecticides, and avoid smoking around tomatoes. If infected, remove plants, keep the area clean, monitor other plants, and consider hydroponically growing tomatoes to prevent infection.",
     "Tomato___healthy": "No disease detected. Your tomato plant is healthy!",
 }
 disease_name_Tomato = {
@@ -143,9 +153,9 @@ disease_name_Tomato = {
 
 CLASS_NAMES_Corn = ["Corn__common_rust","Corn__gray_leaf_spot","Corn__healthy","Corn__northern_leaf_blight"]
 disease_solution_Corn = {
-    "Corn__common_rust": "Solution for common_rust...",
-    "Corn__gray_leaf_spot": "Solution for gray_leaf_spot...",
-    "Corn__northern_leaf_blight": "Solution for northern_leaf_blight...",
+    "Corn__common_rust": "Rotate crops, use resistant corn varieties early, use fungicides, remove infected plants, maintain plant health with proper nutrition and irrigation, and regularly monitor for rust infection signs. Use fungicides only when necessary and remove infected plants.",
+    "Corn__gray_leaf_spot": "Controlling gray leaf spot in corn requires crop rotation, resistant varieties, fungicide application, timely harvest, and cultural practices. Regular selection, fungicide use, and timely harvest reduce disease severity. Proper fertilization, irrigation, and weed control reduce stress on plants.",
+    "Corn__northern_leaf_blight": "Apply fungicides like azoxystrobin, pyraclostrobin, and trifloxystrobin before symptoms appear. Practice crop rotation, select resistant varieties, and maintain good plant hygiene by removing residues and controlling weeds. These measures ensure healthy yields and prevent Northern Leaf Blight.",
     "Corn__healthy": "No disease detected. Your plant is healthy!",
 }
 disease_name_Corn = {
@@ -158,9 +168,9 @@ disease_name_Corn = {
 
 CLASS_NAMES_Sugarcane= ["Sugarcane__bacterial_blight","Sugarcane__healthy","Sugarcane__red_rot","Sugarcane__rust"]
 disease_solution_Sugarcane = {
-    "Sugarcane__bacterial_blight": "Solution for bacterial_blight...",
-    "Sugarcane__red_rot": "Solution for Sugarcane__red_rot...",
-    "Sugarcane__rust": "Solution for Sugarcane__rust...",
+    "Sugarcane__bacterial_blight": "Implement sanitation practices, use resistant cultivars, rotate with non-host crops, use chemical control, monitor fields for bacterial blight, improve plant nutrition, and maintain balanced fertilization and soil pH levels to prevent disease spread and minimize crop damage.",
+    "Sugarcane__red_rot": "Effective red rot control requires crop rotation, disease-free seedlings, field sanitation, fungicides, biological control agents, nematode management, irrigation, drainage, nutrition, timely harvesting, and continuous monitoring. Implement nematode management strategies and maintain optimal soil moisture, drainage, and nutrient levels for resistance.",
+    "Sugarcane__rust": "Crop rotation, fungicide use, pruning, hygiene, and resistant varieties are crucial for breaking infection cycles in sugarcane crops. Consult a professional for optimal fungicide and application methods, practice good sanitation, and grow sugarcane varieties resistant to rust for better resistance.",
     "Sugarcane__healthy": "No disease detected. Your plant is healthy!",
 }
 disease_name_Sugarcane = {
@@ -173,12 +183,12 @@ disease_name_Sugarcane = {
 
 CLASS_NAMES_Tea= ["Tea__algal_leaf","Tea__anthracnose","Tea__bird_eye_spot","Tea__brown_blight","Tea__healthy","Tea__red_leaf_spot"]
 disease_solution_Tea = {
-    "Tea__algal_leaf": "Solution for Tea__algal_leaf...",
-    "Tea__anthracnose": "Solution for Tea__anthracnose...",
-    "Tea__bird_eye_spot": "Tea__bird_eye_spott...",
+    "Tea__algal_leaf": "Maintain a healthy plant environment by following good sanitation practices, using proper irrigation, using plant-resistant varieties, applying fungicides according to label rates, and implementing Integrated Pest Management (IPM) practices. Take preventive measures, such as sterilizing gardening tools and avoiding touching infected leaves.",
+    "Tea__anthracnose": "Sanitation, cultural practices, fungicide, biological control, and plant resistance prevent tea anthracnose spread. Proper pruning, thinning and irrigation avoids wetting foliage. Copper-based products, mancozeb, chlorothalonil control anthracnose. Trichoderma spp. helps. Planting resistant cultivars reduces disease occurrence.",
+    "Tea__bird_eye_spot": "Proper plant spacing, sunlight, and nitrogen use are crucial for healthy plants. Avoid over-fertilization, reduce nitrogen fertilizer usage, and use drip irrigation. Eliminate weeds, debris, and pests using natural predators like ladybugs and praying mantis.",
     "Tea__healthy": "No disease detected. Your plant is healthy!",
-    "Tea__brown_blight": "Tea__brown_blight...",
-    "Tea__red_leaf_spot": "Tea__red_leaf_spot...",
+    "Tea__brown_blight": "Use disease-resistant tea cultivars, maintain optimal growing conditions, monitor and remove infected plant parts, use fungicides like tebuconazole, propiconazole, or mancozeb, practice good crop rotation, and prune tea plants regularly. Regular pruning increases light penetration and air circulation, reducing the risk of infection.",
+    "Tea__red_leaf_spot": "Sanitation, fungicide application, and plant health improvement are crucial for preventing disease spread in tea plants. Use registered fungicides, fertilizers, and proper irrigation to maintain plant health. Adjust plant spacing and rotate crops regularly to reduce soil build-up.",
 }
 disease_name_Tea = {
     "Tea__algal_leaf": "algal leaf",
@@ -192,10 +202,10 @@ disease_name_Tea = {
 
 CLASS_NAMES_Grape =['Grape__black_measles','Grape__black_rot','Grape__healthy','Grape__leaf_blight_(isariopsis_leaf_spot)']
 disease_solution_Grape={
-    "Grape__black_measles": "Solution for bacterial_blight...",
-    "Grape__black_rot": "Solution for Sugarcane__red_rot...",
-    "Grape__healthy": "Solution for Sugarcane__rust...",
-    "Grape__leaf_blight_(isariopsis_leaf_spot)": "No disease detected. Your plant is healthy!",
+    "Grape__black_measles": "Regular monitoring, pruning, fungicide sprays, vineyard hygiene, proper irrigation, and fertilization are essential for maintaining soil health and reducing fungal infections. Plant resistant or tolerant cultivars, low-watering techniques, beneficial microorganisms, sanitizing pruning tools, and crop rotation are also beneficial.",
+    "Grape__black_rot": "Recommends pruning vines, removing infected plant material, using fungicides, and using plant-resistant grape varieties. Proper irrigation, fertilization, and pest control are crucial for maintaining healthy vines and preventing fungus growth. Apply fungicides at the right time and concentration.",
+    "Grape__healthy": "No disease detected. Your plant is healthy!",
+    "Grape__leaf_blight_(isariopsis_leaf_spot)": "Prune and thin grape vines to boost sunlight and airflow for fungal infection prevention. Use copper, sulfur, or triazole fungicides. Adopt IPM involving cultural practices, organic pesticides, and helpful insects. Ensure sanitization, dispose of infected foliage and fruit, and sterilize pruning tools for effective clean-up.",
 }
 disease_name_Grape={
     "Grape__black_measles": "black measles",
@@ -207,9 +217,9 @@ disease_name_Grape={
 
 CLASS_NAMES_Potato =['Potato__early_blight', 'Potato__healthy', 'Potato__late_blight']
 disease_solution_Potato={
-    "Potato__early_blight": "Solution for bacterial_blight...",
-    "Potato__healthy": "Solution for Sugarcane__red_rot...",
-    "Potato__late_blight": "No disease detected. Your plant is healthy!",
+    "Potato__early_blight": "Follow crop rotation, mulch, watering, fertilizing, pruning, and using fungicides. Plant potatoes in different locations each year, avoid over-fertilizing, prune off infected leaves and stems, and use appropriate fungicides if the disease persists. Prevent disease by planting resistant varieties and following good planting practices.",
+    "Potato__healthy":"No disease detected. Your plant is healthy!",
+    "Potato__late_blight":  "Implement crop rotation, resistant varieties, sanitation, fungicide application, timely watering, adequate plant spacing, and regular inspections. Avoid planting consecutively, use disease-resistant varieties, follow label instructions, and ensure proper sanitation and watering.",
 }
 disease_name_Potato={
     "Potato__early_blight": "early blight",
