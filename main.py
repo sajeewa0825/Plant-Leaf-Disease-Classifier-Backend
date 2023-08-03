@@ -5,6 +5,9 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import tensorflow as tf
+from pymongo import MongoClient
+from pydantic import BaseModel
+from typing import List
 
 app = FastAPI()
 
@@ -106,15 +109,42 @@ async def predict(
         'solution': solution
     }
 
-@app.post("/feedback")
-async def feedback(
-        rating :str = Form(...),
-        feedback : str = Form(...)
-):
-    if rating != None and feedback != None:
-        return {
-            'message': 'Thank you for your feedback!'
-        }
+
+class FeedbackModel(BaseModel):
+    feedback: str
+    rating: str
+
+def get_mongo_client():
+    client = MongoClient("mongodb+srv://sajeewa:sajeewa1234@cluster0.stk5p6n.mongodb.net/?retryWrites=true&w=majority")
+    return client
+
+@app.post("/feedback/")
+async def feedback(rating: str = Form(...), feedback: str = Form(...)):
+    if rating and feedback:
+        # Store the feedback and rating in MongoDB
+        feedback_data = FeedbackModel(rating=rating, feedback=feedback)
+        client = get_mongo_client()
+        db = client["feedback_db"]
+        feedback_collection = db["feedbacks"]
+        feedback_collection.insert_one(feedback_data.dict())
+        client.close()
+        return {"message": "Thank you for your feedback!"}
+    else:
+        return {"error": "Both rating and feedback are required."}
+
+
+@app.get("/feedbacks/", response_model=List[FeedbackModel])
+def get_feedbacks():
+    client = get_mongo_client()
+    db = client["feedback_db"]
+    feedback_collection = db["feedbacks"]
+
+    # Fetch all feedbacks from MongoDB
+    feedbacks = list(feedback_collection.find({}))
+    
+    client.close()
+    return feedbacks
+
 
 # Run the FastAPI application with Uvicorn server on localhost and port 8000
 if __name__ == "__main__":
