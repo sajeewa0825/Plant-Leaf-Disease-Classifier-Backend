@@ -27,12 +27,12 @@ app.add_middleware(
 )
 
 
-# tomato_model = tf.keras.models.load_model("../Model/Tomato.h5")
-# corn_model = tf.keras.models.load_model("../Model/corn.h5")
-# sugarcane_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
-# tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
-# grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
-# potato_model= tf.keras.models.load_model("../Model/Potato.h5")
+tomato_model = tf.keras.models.load_model("../Model/Tomato.h5")
+corn_model = tf.keras.models.load_model("../Model/corn.h5")
+sugarcane_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+potato_model= tf.keras.models.load_model("../Model/Potato.h5")
 
 
 # Define a route for the '/ping' endpoint, accessible via HTTP GET request
@@ -191,8 +191,8 @@ disease_solution_Corn = {
 }
 disease_name_Corn = {
     "Corn__common_rust": "common rust",
-    "Corn__gray_leaf_spot": "gray_leaf_spot",
-    "Corn__northern_leaf_blight": "northern_leaf_blight",
+    "Corn__gray_leaf_spot": "gray leaf spot",
+    "Corn__northern_leaf_blight": "northern leaf blight",
     "Corn__healthy": "healthy",
 }
 
