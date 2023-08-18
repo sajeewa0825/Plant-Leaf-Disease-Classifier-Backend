@@ -8,11 +8,12 @@ import tensorflow as tf
 from pymongo import MongoClient
 from pydantic import BaseModel
 from typing import List
-import pickle
-import pandas as pd
+from dotenv import load_dotenv
+import os
 
 
 app = FastAPI()
+load_dotenv()
 
 # Configure CORS settings to allow requests from specific origins
 origins = [
@@ -37,10 +38,6 @@ tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 potato_model= tf.keras.models.load_model("../Model/Potato.h5")
 
-# Load the SVM model
-model_filename = '../Model/svm_model.pkl'
-with open(model_filename, 'rb') as file:
-    model = pickle.load(file)
 
 
 # Define a route for the '/ping' endpoint, accessible via HTTP GET request
@@ -118,51 +115,13 @@ async def predict(
     }
 
 
-# Define the route for making predictions
-@app.post("/croprecommendation")
-def predict_crop(
-    nitrogen: str = Form(...),
-    phosphorus: str = Form(...),
-    potassium: str = Form(...),
-    temperature: str = Form(...),
-    humidity: str = Form(...),
-    ph: str = Form(...),
-    rainfall: str = Form(...)
-):
-    
-    # Convert input strings to float
-    nitrogen = int(nitrogen)
-    phosphorus = int(phosphorus)
-    potassium = int(potassium)
-    temperature = float(temperature)
-    humidity = float(humidity)
-    ph = float(ph)
-    rainfall = float(rainfall)
-
-    # Create a DataFrame with the input data
-    input_data = pd.DataFrame({
-        'Nitrogen': [nitrogen],
-        'phosphorus': [phosphorus],
-        'potassium': [potassium],
-        'temperature': [temperature],
-        'humidity': [humidity],
-        'ph': [ph],
-        'rainfall': [rainfall]
-    })
-
-    # Make predictions using the loaded SVM model
-    pred = model.predict(input_data)
-
-    return {"predicted_crop": pred[0]}
-
-
 class FeedbackModel(BaseModel):
     name: str
     feedback: str
     rating: str
 
 def get_mongo_client():
-    client = MongoClient("mongodb+srv://sajeewa:sajeewa1234@cluster0.stk5p6n.mongodb.net/?retryWrites=true&w=majority")
+    client = MongoClient(os.getenv("MONGO_URL"))
     return client
 
 @app.post("/feedback")
