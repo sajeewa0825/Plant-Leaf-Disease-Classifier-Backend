@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from typing import List
 import requests
 import tempfile
-# from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model
 
 
 
