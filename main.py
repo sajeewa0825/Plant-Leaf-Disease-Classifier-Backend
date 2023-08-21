@@ -43,11 +43,11 @@ app.add_middleware(
 
 # Define the URLs for the models store on Google drive
 tomato_model_url = "https://drive.google.com/uc?export=download&id=18YxyfsBYfHkILP8Dg3TuO2EgouvMfTuV"
-# corn_model_url = "https://drive.google.com/uc?export=download&id=1cCDHwtVNTIRvLnh-9VXERonI5CnvvS6r"
-# sugarcane_model_url = "https://drive.google.com/uc?export=download&id=1_3O4ac7KOmZfToGibnh5aFOdeUR5RuU8"
-# tea_model_url = "https://drive.google.com/uc?export=download&id=13p2cEYw3ngxuHQmEJURIk3nSluakgJ_-"
-# grape_model_url = "https://drive.google.com/uc?export=download&id=1LgWpLkw1DeQvaskUeb7M3JKbYtI_y_hA"
-# potato_model_url = "https://drive.google.com/uc?export=download&id=1XO8PrxE-xTRiSfN6vInrpXodF-sTvysn"
+corn_model_url = "https://drive.google.com/uc?export=download&id=1cCDHwtVNTIRvLnh-9VXERonI5CnvvS6r"
+sugarcane_model_url = "https://drive.google.com/uc?export=download&id=1_3O4ac7KOmZfToGibnh5aFOdeUR5RuU8"
+tea_model_url = "https://drive.google.com/uc?export=download&id=13p2cEYw3ngxuHQmEJURIk3nSluakgJ_-"
+grape_model_url = "https://drive.google.com/uc?export=download&id=1LgWpLkw1DeQvaskUeb7M3JKbYtI_y_hA"
+potato_model_url = "https://drive.google.com/uc?export=download&id=1XO8PrxE-xTRiSfN6vInrpXodF-sTvysn"
 
 
 # Function to load a model from a URL
@@ -61,11 +61,11 @@ def load_model_from_url(url):
 
 # Load the models from Google drive using the function
 tomato_model = load_model_from_url(tomato_model_url)
-# corn_model = load_model_from_url(corn_model_url)
-# sugarcane_model = load_model_from_url(sugarcane_model_url)
-# tea_model = load_model_from_url(tea_model_url)
-# grape_model = load_model_from_url(grape_model_url)
-# potato_model = load_model_from_url(potato_model_url)
+corn_model = load_model_from_url(corn_model_url)
+sugarcane_model = load_model_from_url(sugarcane_model_url)
+tea_model = load_model_from_url(tea_model_url)
+grape_model = load_model_from_url(grape_model_url)
+potato_model = load_model_from_url(potato_model_url)
 
 
 
