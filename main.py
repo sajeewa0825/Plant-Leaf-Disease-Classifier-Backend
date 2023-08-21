@@ -9,12 +9,12 @@ from pydantic import BaseModel
 from typing import List
 import requests
 import tempfile
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
 
 
 
 app = FastAPI()
-load_dotenv()
+
 
 # Configure CORS settings to allow requests from specific origins
 origins = [
