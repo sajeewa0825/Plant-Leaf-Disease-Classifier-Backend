@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from typing import List
 import requests
 import tempfile
-from tensorflow.keras.models import load_model
+import joblib 
 
 
 
@@ -55,7 +55,7 @@ def load_model_from_url(url):
     temp_file = tempfile.NamedTemporaryFile(delete=False)
     temp_file.write(response.content)
     temp_file.close()
-    model = load_model(temp_file.name)
+    model = joblib.load(temp_file.name)
     return model
 
 # Load the models from Google drive using the function
