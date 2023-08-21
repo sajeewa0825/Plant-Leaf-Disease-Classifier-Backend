@@ -4,12 +4,15 @@ import uvicorn
 import numpy as np
 from io import BytesIO
 from PIL import Image
-import tensorflow as tf
 from pymongo import MongoClient
 from pydantic import BaseModel
 from typing import List
 from dotenv import load_dotenv
 import os
+import requests
+import tempfile
+from tensorflow.keras.models import load_model
+
 
 
 app = FastAPI()
@@ -31,12 +34,39 @@ app.add_middleware(
 )
 
 
-tomato_model = tf.keras.models.load_model("../Model/Tomato.h5")
-corn_model = tf.keras.models.load_model("../Model/corn.h5")
-sugarcane_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
-tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
-grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
-potato_model= tf.keras.models.load_model("../Model/Potato.h5")
+# tomato_model = tf.keras.models.load_model("../Model/Tomato.h5")
+# corn_model = tf.keras.models.load_model("../Model/corn.h5")
+# sugarcane_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+# tea_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+# grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
+# potato_model= tf.keras.models.load_model("../Model/Potato.h5")
+
+
+# Define the URLs for the models store on Google drive
+tomato_model_url = "https://drive.google.com/uc?export=download&id=18YxyfsBYfHkILP8Dg3TuO2EgouvMfTuV"
+corn_model_url = "https://drive.google.com/uc?export=download&id=1cCDHwtVNTIRvLnh-9VXERonI5CnvvS6r"
+sugarcane_model_url = "https://drive.google.com/uc?export=download&id=1_3O4ac7KOmZfToGibnh5aFOdeUR5RuU8"
+tea_model_url = "https://drive.google.com/uc?export=download&id=13p2cEYw3ngxuHQmEJURIk3nSluakgJ_-"
+grape_model_url = "https://drive.google.com/uc?export=download&id=1LgWpLkw1DeQvaskUeb7M3JKbYtI_y_hA"
+potato_model_url = "https://drive.google.com/uc?export=download&id=1XO8PrxE-xTRiSfN6vInrpXodF-sTvysn"
+
+
+# Function to load a model from a URL
+def load_model_from_url(url):
+    response = requests.get(url)
+    temp_file = tempfile.NamedTemporaryFile(delete=False)
+    temp_file.write(response.content)
+    temp_file.close()
+    model = load_model(temp_file.name)
+    return model
+
+# Load the models from Google drive using the function
+tomato_model = load_model_from_url(tomato_model_url)
+corn_model = load_model_from_url(corn_model_url)
+sugarcane_model = load_model_from_url(sugarcane_model_url)
+tea_model = load_model_from_url(tea_model_url)
+grape_model = load_model_from_url(grape_model_url)
+potato_model = load_model_from_url(potato_model_url)
 
 
 

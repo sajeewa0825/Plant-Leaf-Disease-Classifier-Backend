@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+numpy
+tensorflow
+dotenv
+io
+PIL
+pymongo
+pydantic
+typing
+os
+requests
+tempfile
