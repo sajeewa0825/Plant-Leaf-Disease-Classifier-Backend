@@ -7,8 +7,6 @@ from PIL import Image
 from pymongo import MongoClient
 from pydantic import BaseModel
 from typing import List
-from dotenv import load_dotenv
-import os
 import requests
 import tempfile
 from tensorflow.keras.models import load_model

@@ -1,12 +1,11 @@
 fastapi
 uvicorn
 numpy
-tensorflow
+tensorflow = 2.13.0
+pymongo = 4.4.1
+pydantic = 2.2.1
+typing = 3.10.0.0
+requests = 2.31.0
 io
 PIL
-pymongo
-pydantic
-typing
-os
-requests
 tempfile
