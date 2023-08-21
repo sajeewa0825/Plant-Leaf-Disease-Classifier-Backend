@@ -151,7 +151,7 @@ class FeedbackModel(BaseModel):
     rating: str
 
 def get_mongo_client():
-    client = MongoClient(os.getenv("MONGO_URL"))
+    client = MongoClient("mongodb+srv://sajeewa:sajeewa1234@cluster0.stk5p6n.mongodb.net/?retryWrites=true&w=majority")
     return client
 
 @app.post("/feedback")
