@@ -39,8 +39,8 @@ app.add_middleware(
 
 
 # Define the URLs for the models store on Google drive
-# tomato_model_url = "https://drive.google.com/uc?export=download&id=18YxyfsBYfHkILP8Dg3TuO2EgouvMfTuV"
-corn_model_url = "https://drive.google.com/uc?export=download&id=1cCDHwtVNTIRvLnh-9VXERonI5CnvvS6r"
+tomato_model_url = "https://drive.google.com/uc?export=download&id=18YxyfsBYfHkILP8Dg3TuO2EgouvMfTuV"
+#corn_model_url = "https://drive.google.com/uc?export=download&id=1cCDHwtVNTIRvLnh-9VXERonI5CnvvS6r"
 # sugarcane_model_url = "https://drive.google.com/uc?export=download&id=1_3O4ac7KOmZfToGibnh5aFOdeUR5RuU8"
 # tea_model_url = "https://drive.google.com/uc?export=download&id=13p2cEYw3ngxuHQmEJURIk3nSluakgJ_-"
 # grape_model_url = "https://drive.google.com/uc?export=download&id=1LgWpLkw1DeQvaskUeb7M3JKbYtI_y_hA"
@@ -57,8 +57,8 @@ def load_model_from_url(url):
     return model
 
 # Load the models from Google drive using the function
-# tomato_model = load_model_from_url(tomato_model_url)
-corn_model = load_model_from_url(corn_model_url)
+tomato_model = load_model_from_url(tomato_model_url)
+# corn_model = load_model_from_url(corn_model_url)
 # sugarcane_model = load_model_from_url(sugarcane_model_url)
 # tea_model = load_model_from_url(tea_model_url)
 # grape_model = load_model_from_url(grape_model_url)
@@ -262,16 +262,16 @@ disease_name_Tomato = {
 }
 
 disease_name_Tomato_Si = {
-     "තක්කාලි___Bacterial_spot": "Bacterial spot",
-     "තක්කාලි___Early_blight": "මුල් අංගමාරය",
-     "තක්කාලි___Late_blight": "Late අංගමාරය",
-     "තක්කාලි___Leaf_Mold": "Leaf Mold",
-     "තක්කාලි___Septoria_leaf_spot": "Septoria කොළ ලප",
-     "තක්කාලි___Spider_mites Two-spotted_spider_mite": "මකුළු මයිටා",
-     "තක්කාලි___Target_Spot": "Target Spot",
-     "තක්කාලි___Tomato_Yellow_Leaf_Curl_Virus": "Yellow Leaf Curl Virus",
-     "තක්කාලි___Tomato_mosaic_virus": "Mosaic Virus",
-     "තක්කාලි___ සෞඛ්ය සම්පන්න": "සෞඛ්ය සම්පන්න",
+     "Tomato___Bacterial_spot": "බැක්ටීරියා ස්ථානය",
+     "Tomato___Early_blight": "මුල් අංගමාරය",
+     "Tomato___Late_blight": "ප්‍රමාද අංගමාරය",
+     "Tomato___Leaf_Mold": "කොළ අච්චුව",
+     "Tomato___Septoria_leaf_spot": "සෙප්ටෝරියා පත්‍ර ලප",
+     "Tomato___Spider_mites Two-spotted_spider_mite": "මකුළු මයිටා",
+     "Tomato___Target_Spot": "Target Spot",
+     "Tomato___Tomato_Yellow_Leaf_Curl_Virus": "කහ කොළ ක්ලුරල් වෛරසය",
+     "Tomato___Tomato_mosaic_virus": "මොසෙයික් වෛරසය",
+     "Tomato___healthy": "සෞඛ්ය සම්පන්නයි",
 }
 
 
@@ -299,7 +299,7 @@ disease_name_Corn_Si = {
      "Corn__common_rust": "පොදු මලකඩ",
      "Corn__gray_leaf_spot": "අළු පත්‍ර ලප",
      "Corn__northern_leaf_blight": "උතුරු පත්‍ර අංගමාරය",
-     "Corn__healthy": "සෞඛ්ය සම්පන්න",
+     "Corn__healthy": "සෞඛ්ය සම්පන්නයි",
 }
 
 
@@ -326,7 +326,7 @@ disease_name_Sugarcane_Si = {
      "Sugarcane__bacterial_blight": "බැක්ටීරියා අංගමාරය",
      "Sugarcane__red_rot": "උක්ගස් රතු කුණු",
      "Sugarcane__rust": "උක්ගස් මලකඩ",
-     "Sugarcane__healthy": "සෞඛ්‍ය සම්පන්න",
+     "Sugarcane__healthy": "සෞඛ්‍ය සම්පන්නයි",
 }
 
 
@@ -360,8 +360,8 @@ disease_name_Tea_Si = {
      "Tea__algal_leaf": "ඇල්ගල් කොළ",
      "Tea__anthracnose": "ඇන්ත්‍රැක්නෝස්",
      "Tea__bird_eye_spot": "කුරුළු ඇසේ ලප",
-     "Tea__healthy": "සෞඛ්ය සම්පන්න",
-     "Tea__brown_bligh": "බ්‍රවුන්_බ්ලයිට්",
+     "Tea__healthy": "සෞඛ්ය සම්පන්නයි",
+     "Tea__brown_bligh": "තේ දුඹුරු බ්ලිග්",
      "Tea__red_leaf_spot": "රතු පත්‍ර ලප",
 }
 
@@ -387,7 +387,7 @@ disease_name_Grape={
 disease_name_Grape_Si={
      "Grape__black_measles": "කළු සරම්ප",
      "Grape__black_rot": "කළු කුණු",
-     "Grape__healthy": "සෞඛ්ය සම්පන්න",
+     "Grape__healthy": "සෞඛ්ය සම්පන්නයි",
      "Grape__leaf_blight_(isariopsis_leaf_spot)": "කොළ අංගමාරය",
 }
 
@@ -409,6 +409,6 @@ disease_name_Potato={
 }
 disease_name_Potato_Si={
      "Potato__early_blight": "මුල් අංගමාරය",
-     "Potato__healthy": "සෞඛ්ය සම්පන්න",
+     "Potato__healthy": "සෞඛ්ය සම්පන්නයි",
      "Patato__late_blight": "අවසන් අංගමාරය",
 }
