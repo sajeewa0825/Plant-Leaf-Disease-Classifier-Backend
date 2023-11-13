@@ -65,7 +65,6 @@ corn_model = load_model_from_url(corn_model_url)
 # potato_model = load_model_from_url(potato_model_url)
 
 
-
 # Define a route for the '/ping' endpoint, accessible via HTTP GET request
 @app.get("/ping")
 async def ping():
