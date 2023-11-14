@@ -37,7 +37,6 @@ app.add_middleware(
 # grape_model= tf.keras.models.load_model("../Model/Sugarcane.h5")
 # potato_model= tf.keras.models.load_model("../Model/Potato.h5")
 
-
 # Define the URLs for the models store on Google drive
 tomato_model_url = "https://drive.google.com/uc?export=download&id=18YxyfsBYfHkILP8Dg3TuO2EgouvMfTuV"
 # corn_model_url = "https://drive.google.com/uc?export=download&id=1cCDHwtVNTIRvLnh-9VXERonI5CnvvS6r"
